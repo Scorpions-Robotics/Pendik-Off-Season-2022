@@ -7,7 +7,7 @@ public final class Constants {
     public static final int kStickId = 1;
     public static final int kPanelId = 0;
     public static final int kXboxStick = 2;
-     public static final int kButton1 = 1;
+    public static final int kButton1 = 1;
     public static final int kButton2 = 2;
     public static final int kButton3 = 3;
     public static final int kButton4 = 4;

@@ -8,17 +8,17 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-//sol motor 2
+// sol motor 2
 
-//sag motor4
+// sag motor4
 public class ClimbSubsystem extends SubsystemBase {
   private WPI_VictorSPX climbMotor1 = new WPI_VictorSPX(Constants.CAN.kClimbMotorLeft1ID);
   private WPI_VictorSPX climbMotor2 = new WPI_VictorSPX(Constants.CAN.kClimbMotorLeft2ID);
   private WPI_VictorSPX climbMotor3 = new WPI_VictorSPX(Constants.CAN.kClimbMotorRight1ID);
   private WPI_VictorSPX climbMotor4 = new WPI_VictorSPX(Constants.CAN.kClimbMotorRight2ID);
 
- // MotorControllerGroup left = new MotorControllerGroup(climbMotor1, climbMotor2);
-  //MotorControllerGroup right = new MotorControllerGroup(climbMotor3, climbMotor4);
+  // MotorControllerGroup left = new MotorControllerGroup(climbMotor1, climbMotor2);
+  // MotorControllerGroup right = new MotorControllerGroup(climbMotor3, climbMotor4);
 
   DigitalInput climbSwitch = new DigitalInput(Constants.CLIMB.climbSwitchPort);
 
@@ -47,60 +47,50 @@ public class ClimbSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-
-
-  SmartDashboard.setDefaultBoolean("switch climb", climbSwitch.get());
+    SmartDashboard.setDefaultBoolean("switch climb", climbSwitch.get());
   }
 
   public void runClimbUpwards(double speed) {
 
-/*
+    /*
 
 
-climbMotor2.set(-speed);
-climbMotor4.set(speed);
-*/
-
-
-
-  if (climbSwitch.get() == true) {
-    climbMotor2.set(0);
-    climbMotor4.set(0);
-  } 
-  else {
     climbMotor2.set(-speed);
     climbMotor4.set(speed);
-  }
-      }   
+    */
 
-public void runclimb(double speed){
+    if (climbSwitch.get() == true) {
+      climbMotor2.set(0);
+      climbMotor4.set(0);
+    } else {
+      climbMotor2.set(-speed);
+      climbMotor4.set(speed);
+    }
+  }
+
+  public void runclimb(double speed) {
     climbMotor2.set(speed);
     climbMotor4.set(-speed);
-  
-}
+  }
 
   public void runClimbDownwards(double speed) {
-/*
- if (climbSwitch.get() == true) {
-    climbMotor2.set(0);
-    climbMotor4.set(0);
-  } 
-  else {
+    /*
+     if (climbSwitch.get() == true) {
+        climbMotor2.set(0);
+        climbMotor4.set(0);
+      }
+      else {
+        climbMotor2.set(-speed);
+        climbMotor4.set(speed);
+      }
+    */
     climbMotor2.set(-speed);
     climbMotor4.set(speed);
   }
-*/
-climbMotor2.set(-speed);
-climbMotor4.set(speed);
 
-      }
-  
-
-public boolean readswitch(){
-return climbSwitch.get();
-
-}
-
+  public boolean readswitch() {
+    return climbSwitch.get();
+  }
 
   public void changeMode() {
     if (reverse_mode) {
@@ -122,19 +112,18 @@ return climbSwitch.get();
 
   public void pullPneumatic() {
     climbPneumatic.set(DoubleSolenoid.Value.kReverse);
-   // pneumatic_mode = false;
+    // pneumatic_mode = false;
   }
-
 
   public void pushPneumatic() {
     climbPneumatic.set(DoubleSolenoid.Value.kForward);
-    //pneumatic_mode = true;
+    // pneumatic_mode = true;
   }
 
   public void stopClimb() {
     climbMotor2.set(Constants.VARIABLES.kZero);
-climbMotor4.set(Constants.VARIABLES.kZero);
-    //left.set(Constants.VARIABLES.kZero);
-    //right.set(Constants.VARIABLES.kZero);
+    climbMotor4.set(Constants.VARIABLES.kZero);
+    // left.set(Constants.VARIABLES.kZero);
+    // right.set(Constants.VARIABLES.kZero);
   }
 }

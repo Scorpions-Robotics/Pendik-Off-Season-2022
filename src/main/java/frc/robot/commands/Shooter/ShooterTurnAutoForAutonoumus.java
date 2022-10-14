@@ -1,7 +1,5 @@
 package frc.robot.commands.Shooter;
 
-
-
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -36,8 +34,6 @@ public class ShooterTurnAutoForAutonoumus extends CommandBase {
   @Override
   public void execute() {
 
-
-
     distance = m_vision.getHoopD();
     if (m_shooter.pneumatic_mode) {
       min_distance = 450;
@@ -62,11 +58,11 @@ public class ShooterTurnAutoForAutonoumus extends CommandBase {
                   m_shooter.calculateShooterSpeed(
                       distance, min_distance, max_distance, min_rpm, max_rpm));
       m_shooter.runShooterVoltage(motorOutput);
-      //işaret-
-      m_shooter.required_rpm = 
-      m_shooter.calculateShooterSpeed(distance, min_distance, max_distance, min_rpm, max_rpm) -
-       m_shooter.getShooterEncoderRPM();
-       //-
+      // işaret-
+      m_shooter.required_rpm =
+          m_shooter.calculateShooterSpeed(distance, min_distance, max_distance, min_rpm, max_rpm)
+              - m_shooter.getShooterEncoderRPM();
+      // -
     } else {
       m_shooter.runShooter(0.3);
       m_shooter.required_rpm = 99999;

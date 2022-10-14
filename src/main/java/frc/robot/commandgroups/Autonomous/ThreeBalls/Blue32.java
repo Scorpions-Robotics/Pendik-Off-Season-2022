@@ -5,8 +5,6 @@
 package frc.robot.commandgroups.Autonomous.ThreeBalls;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commandgroups.ShootAuto;
 import frc.robot.commands.Autonomous.AutoAngleTurn;
@@ -21,47 +19,37 @@ import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
-
 public class balllz3 extends SequentialCommandGroup {
 
   public balllz3(
-  DriveSubsystem m_drive,
-  FeederSubsystem m_feeder,
-  IntakeSubsystem m_intake,
-  ShooterSubsystem m_shooter,
-  VisionSubsystem m_vision,
-  LEDSubsystem m_led) {
+      DriveSubsystem m_drive,
+      FeederSubsystem m_feeder,
+      IntakeSubsystem m_intake,
+      ShooterSubsystem m_shooter,
+      VisionSubsystem m_vision,
+      LEDSubsystem m_led) {
     addCommands(
-      new ShootAuto(m_shooter, m_vision, m_led)
-      .alongWith(
-      new IntakePneumaticPush(m_intake)
-      .andThen(new AutoStraightDrive(m_drive,1,false))
-      //.raceWith(new IntakeTurn(m_intake, -1))
-      
-      .andThen(new WaitCommand(0.5))
-      
-      .andThen(new AutoAngleTurn(m_drive, 165))
-      
-      
-      .andThen(new WaitCommand(0.5))
-      .andThen(new FeederTurn(m_feeder, 1).withTimeout(1.5))
-      //.deadlineWith(new FeederTurn(m_feeder, 1))
-      
-      .andThen(new WaitCommand(1))
-            
-      .andThen(new AutoAngleTurn(m_drive, 76))//.deadlineWith(new FeederTurn(m_feeder, 1))
-      
-      .andThen(new WaitCommand(1))
-      
-      .andThen(new AutoStraightDrive(m_drive, 2.35, false)).deadlineWith(new IntakeTurn(m_intake, -1))
+        new ShootAuto(m_shooter, m_vision, m_led)
+            .alongWith(
+                new IntakePneumaticPush(m_intake)
+                    .andThen(new AutoStraightDrive(m_drive, 1, false))
+                    // .raceWith(new IntakeTurn(m_intake, -1))
 
-      .andThen(new WaitCommand(0.5))
-      
-      .andThen(new AutoAngleTurn(m_drive, -120))
-      
-      .andThen(new FeederTurn(m_feeder,1))
-      
-            )      
-    );
+                    .andThen(new WaitCommand(0.5))
+                    .andThen(new AutoAngleTurn(m_drive, 165))
+                    .andThen(new WaitCommand(0.5))
+                    .andThen(new FeederTurn(m_feeder, 1).withTimeout(1.5))
+                    // .deadlineWith(new FeederTurn(m_feeder, 1))
+
+                    .andThen(new WaitCommand(1))
+                    .andThen(
+                        new AutoAngleTurn(
+                            m_drive, 76)) // .deadlineWith(new FeederTurn(m_feeder, 1))
+                    .andThen(new WaitCommand(1))
+                    .andThen(new AutoStraightDrive(m_drive, 2.35, false))
+                    .deadlineWith(new IntakeTurn(m_intake, -1))
+                    .andThen(new WaitCommand(0.5))
+                    .andThen(new AutoAngleTurn(m_drive, -120))
+                    .andThen(new FeederTurn(m_feeder, 1))));
   }
 }

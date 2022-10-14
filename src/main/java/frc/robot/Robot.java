@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-//import frc.robot.ScorpTrajectory2;
+// import frc.robot.ScorpTrajectory2;
+
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
@@ -17,7 +18,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
-//    ScorpTrajectory2 scorp2;
+    //    ScorpTrajectory2 scorp2;
 
     auto_chooser.setDefaultOption("2 top", 1);
     auto_chooser.addOption("3 top", 2);
@@ -29,7 +30,6 @@ public class Robot extends TimedRobot {
     auto_chooser.addOption("31", 31);
     auto_chooser.addOption("haHAHhahAH", 13);
     auto_chooser.addOption("blue", 14);
-
 
     SmartDashboard.putData(auto_chooser);
   }
@@ -54,7 +54,6 @@ public class Robot extends TimedRobot {
 
     m_robotContainer.m_feeder.stopFeeder();
 
-    
     m_robotContainer.m_drive.resetodometry();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand(auto_chooser.getSelected());
 

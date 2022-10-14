@@ -9,8 +9,9 @@ import frc.robot.subsystems.ClimbSubsystem;
 
 public class ToggleClimbPneumatic extends CommandBase {
   ClimbSubsystem m_climb;
-boolean mode;
-  public ToggleClimbPneumatic(ClimbSubsystem m_climb,boolean mode) {
+  boolean mode;
+
+  public ToggleClimbPneumatic(ClimbSubsystem m_climb, boolean mode) {
     this.m_climb = m_climb;
     this.mode = mode;
   }
@@ -22,13 +23,12 @@ boolean mode;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(mode){
+    if (mode) {
       m_climb.pullPneumatic();
 
+    } else {
+      m_climb.pushPneumatic();
     }
-else{
-  m_climb.pushPneumatic();
-}
   }
 
   // Called once the command ends or is interrupted.

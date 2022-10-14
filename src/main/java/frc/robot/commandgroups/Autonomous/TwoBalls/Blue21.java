@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commandgroups.ShootAuto;
 import frc.robot.commands.Autonomous.AutoAngleTurn;
 import frc.robot.commands.Autonomous.AutoStraightDrive;
-import frc.robot.commands.Autonomous.TakeAim;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.FeederSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -34,9 +33,9 @@ public class Blue21 extends SequentialCommandGroup {
             .andThen(new AutoStraightDrive(m_drive, 1.5, false))
             .andThen(new WaitCommand(1.5))
             .andThen(new AutoAngleTurn(m_drive, 180))
-          //  .andThen(new TakeAim(m_drive, m_vision, m_led))
+            //  .andThen(new TakeAim(m_drive, m_vision, m_led))
             .andThen(
-                new ShootAuto(m_shooter, m_vision,m_led)
+                new ShootAuto(m_shooter, m_vision, m_led)
                     .alongWith(
                         new WaitCommand(2)
                             .andThen(new InstantCommand(() -> m_feeder.runFeeder(-0.3))))));

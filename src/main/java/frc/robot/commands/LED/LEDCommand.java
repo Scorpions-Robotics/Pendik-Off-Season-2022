@@ -28,7 +28,7 @@ public class LEDCommand extends CommandBase {
 
   @Override
   public void execute() {
- /*   if (m_shooter.required_rpm - 10 < m_shooter.getShooterEncoderRPM()
+    /*   if (m_shooter.required_rpm - 10 < m_shooter.getShooterEncoderRPM()
     && m_shooter.required_rpm + 10 > m_shooter.getShooterEncoderRPM()) {
     if (m_vision.getHoopB() == 1) {
     m_led.setAll(Color.kAliceBlue);
@@ -39,23 +39,20 @@ public class LEDCommand extends CommandBase {
     m_led.setAll(Color.kRed);
     }*/
 
-
-if(m_vision.getHoopB() == 1){
-    if (Math.abs(m_shooter.required_rpm) < 100 && m_shooter.getShooterEncoderRPM() > 75) {
-    m_led.setAll(Color.kYellow);
-      if(Math.abs(m_shooter.required_rpm) < 60){
-      m_led.setAll(Color.kBlue);
+    if (m_vision.getHoopB() == 1) {
+      if (Math.abs(m_shooter.required_rpm) < 100 && m_shooter.getShooterEncoderRPM() > 75) {
+        m_led.setAll(Color.kYellow);
+        if (Math.abs(m_shooter.required_rpm) < 60) {
+          m_led.setAll(Color.kBlue);
+        }
+      } else {
+        m_led.setAll(Color.kWhite);
+      }
+    } else {
+      m_led.setAll(Color.kRed);
     }
-}
-  else{
-m_led.setAll(Color.kWhite);
-  }
-}
-else{
-m_led.setAll(Color.kRed);
-}
-SmartDashboard.putNumber("target rpmmm", m_shooter.required_rpm);
-SmartDashboard.putNumber("shooter rpm", m_shooter.getShooterEncoderRPM());
+    SmartDashboard.putNumber("target rpmmm", m_shooter.required_rpm);
+    SmartDashboard.putNumber("shooter rpm", m_shooter.getShooterEncoderRPM());
   }
 
   @Override

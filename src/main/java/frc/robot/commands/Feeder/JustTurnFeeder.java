@@ -6,13 +6,12 @@ package frc.robot.commands.Feeder;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FeederSubsystem;
+
 public class JustTurnFeeder extends CommandBase {
-   FeederSubsystem m_feeder;
+  FeederSubsystem m_feeder;
   double speed;
   /** Creates a new JustTurnFeeder. */
-  public JustTurnFeeder(
-    FeederSubsystem m_feeder,
-  double speed) {
+  public JustTurnFeeder(FeederSubsystem m_feeder, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

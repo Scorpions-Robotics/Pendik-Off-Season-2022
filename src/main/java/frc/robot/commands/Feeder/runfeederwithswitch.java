@@ -10,7 +10,7 @@ import frc.robot.subsystems.FeederSubsystem;
 public class runfeederwithswitch extends CommandBase {
   /** Creates a new runfeederwithswitch. */
   FeederSubsystem m_feeder;
-  
+
   public runfeederwithswitch(FeederSubsystem m_feeder) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_feeder = m_feeder;
@@ -25,18 +25,15 @@ public class runfeederwithswitch extends CommandBase {
   public void execute() {
     if (m_feeder.getSwitchValue() == false) {
       m_feeder.runFeeder(0.1);
-    }
-    else{
+    } else {
       m_feeder.stopFeeder();
-    } 
+    }
   }
-  
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_feeder.stopFeeder();
-
   }
 
   // Returns true when the command should end.

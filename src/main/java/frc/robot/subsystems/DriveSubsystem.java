@@ -51,17 +51,19 @@ public class DriveSubsystem extends SubsystemBase {
   private CANSparkMax leftFront = new CANSparkMax(Constants.CAN.kLeftLeaderID, MotorType.kBrushed);
   private CANSparkMax leftRear = new CANSparkMax(Constants.CAN.kLeftFollowerID, MotorType.kBrushed);
 
- public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
- public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
+  public MotorControllerGroup m_right = new MotorControllerGroup(rightFront, rightRear);
+  public MotorControllerGroup m_left = new MotorControllerGroup(leftFront, leftRear);
 
   private DifferentialDrive drive = new DifferentialDrive(m_right, m_left);
-  //tekerlerin arasındakmi mesafe gelecek
+  // tekerlerin arasındakmi mesafe gelecek
   private DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(0.5);
   private DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(getHeading());
 
-  SimpleMotorFeedforward xxxfeedforward = new SimpleMotorFeedforward(Constants.ODOMETRY.kS, Constants.ODOMETRY.kV,Constants.ODOMETRY.kA);
+  SimpleMotorFeedforward xxxfeedforward =
+      new SimpleMotorFeedforward(
+          Constants.ODOMETRY.kS, Constants.ODOMETRY.kV, Constants.ODOMETRY.kA);
   Pose2d pose;
-//işaret
+  // işaret
   PIDController leftpidcontroller = new PIDController(Constants.ODOMETRY.kP, 0, 0);
 
   PIDController rightpidcontroller = new PIDController(Constants.ODOMETRY.kP, 0, 0);
@@ -192,33 +194,32 @@ public class DriveSubsystem extends SubsystemBase {
     drive.feed();
   }
 
-  public SimpleMotorFeedforward getXFeedforward(){
-return xxxfeedforward;
-  } 
-
-public PIDController getRightPidController(){
-return rightpidcontroller;
-}
-
-public PIDController getLeftPidController(){
-  return leftpidcontroller;
+  public SimpleMotorFeedforward getXFeedforward() {
+    return xxxfeedforward;
   }
 
-public DifferentialDriveKinematics getKinematic(){
-return kinematics;
-}
+  public PIDController getRightPidController() {
+    return rightpidcontroller;
+  }
 
-public void resetodometry(){
-  resetGyro();
-  resetEncoders();
-odometry.resetPosition(pose, Rotation2d.fromDegrees(getGyroAngle()));
- // Reset odometry to the starting pose of the trajectory.
+  public PIDController getLeftPidController() {
+    return leftpidcontroller;
+  }
 
-//odometry.getInitialPose();
-//m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
-}
+  public DifferentialDriveKinematics getKinematic() {
+    return kinematics;
+  }
 
-  
+  public void resetodometry() {
+    resetGyro();
+    resetEncoders();
+    odometry.resetPosition(pose, Rotation2d.fromDegrees(getGyroAngle()));
+    // Reset odometry to the starting pose of the trajectory.
+
+    // odometry.getInitialPose();
+    // m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
+  }
+
   @Override
   public void periodic() {
     pose = odometry.update(getHeading(), getLeftEncoderDistance(), getRightEncoderDistance());

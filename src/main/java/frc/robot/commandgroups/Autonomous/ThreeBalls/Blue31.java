@@ -56,7 +56,7 @@ public class Blue31 extends SequentialCommandGroup {
                         new FeederTurn(m_feeder, 1).withInterrupt(() -> m_feeder.getSwitchValue()))
                     .andThen(new AutoAngleTurn(m_drive, 90))
                     .andThen(new TakeAim(m_drive, m_vision, m_led))
-                    .andThen(new ShootAuto(m_shooter, m_vision ,m_led))
+                    .andThen(new ShootAuto(m_shooter, m_vision, m_led))
                     .alongWith(
                         new WaitCommand(0.5)
                             .andThen(new InstantCommand(() -> m_feeder.runFeeder(1)))

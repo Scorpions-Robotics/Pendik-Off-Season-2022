@@ -20,32 +20,24 @@ public class ClimbCommand extends CommandBase {
   @Override
   public void execute() {
 
-   m_climb.runclimb(speed);
-
+    m_climb.runclimb(speed);
   }
- // if (speed > 0) {
+  // if (speed > 0) {
   //    m_climb.runClimbUpwards(speed);
-   // } 
-    
+  // }
+
   //   else {
   //     m_climb.runClimbDownwards(speed);
   //   }
-    
+
   // }
 
-
-
-  
   //  if (speed > 0) {
-    //  m_climb.runClimbUpwards(speed);
-    //} else {
-      //m_climb.runClimbDownwards(speed);
-    //}
-  //}
-
-
-
-
+  //  m_climb.runClimbUpwards(speed);
+  // } else {
+  // m_climb.runClimbDownwards(speed);
+  // }
+  // }
 
   @Override
   public void end(boolean interrupted) {
